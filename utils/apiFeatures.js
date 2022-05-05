@@ -1,3 +1,4 @@
+// 专门用来转换query object
 class APIFeatures {
   // model 应该为模型构造函数，queryObj 应该为 request.query 转换过来的对象
   constructor(model, queryObj) {
