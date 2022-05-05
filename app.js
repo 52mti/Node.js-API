@@ -5,6 +5,7 @@ const morgan = require('morgan');
 // import routers
 const tourRouter = require('./routes/tourRoutes');
 const userRouter = require('./routes/userRoutes');
+const typeNavRouter = require('./routes/typeNavRoutes');
 
 // create express application
 const app = express();
@@ -23,5 +24,6 @@ app.use(cors());
 // Routes
 app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
+app.use('/api/v1/typeNav', typeNavRouter);
 
 module.exports = app;

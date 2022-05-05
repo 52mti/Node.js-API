@@ -3,4 +3,6 @@ const typeNavController = require('../controllers/typeNavController');
 
 const router = express.Router();
 
-router.route('/typeNav').get(typeNavController.getAllTypes);
+router.route('/').get(typeNavController.getAllTypes);
+
+module.exports = router;
