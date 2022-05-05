@@ -1,7 +1,7 @@
 const Tour = require('../models/tourModel');
 const APIFeatures = require('../utils/apiFeatures');
 
-// convert route to request query
+// convert specific route(/top-5-cheap) to request query string
 exports.aliasTopTours = async (req, res, next) => {
   req.query.limit = '5';
   req.query.sort = '-ratingsAverage,price';
@@ -24,7 +24,6 @@ exports.getAllTours = async (req, res) => {
       data: { tours: toursData },
     });
   } catch (err) {
-    console.log(err.message);
     res.status(404).json({
       status: 'fail',
       message: err.message,
@@ -95,3 +94,16 @@ exports.deleteTour = async (req, res) => {
     });
   }
 };
+
+// exports.getTourStats = async (req, res) => {
+//   try {
+//     const stats = Tour.aggregate([
+
+//     ]);
+//   } catch (err) {
+//     res.status(404).json({
+//       status: 'fail',
+//       message: err.message,
+//     });
+//   }
+// };
