@@ -2,26 +2,27 @@ const express = require('express');
 const cors = require('cors');
 const morgan = require('morgan');
 
-// import routers
+// 导入路由器
 const tourRouter = require('./routes/tourRoutes');
 const userRouter = require('./routes/userRoutes');
 const typeNavRouter = require('./routes/typeNavRoutes');
 
-// create express application
 const app = express();
 
-// use morgan module to log request result
+// ---------------开始添加 request & response middleware-----------------
+
+// 在开发模式下，利用 morgan 在终端记录每次 request 的信息（method、path、status、time）
 if (process.env.NODE_ENV === 'development') app.use(morgan('dev'));
 
 app.use(express.static(`${__dirname}/public`));
 
-// convert json request to regular javascript object
+// 转换request格式， json request 👉 object request
 app.use(express.json());
 
-// enable cross-origin resource sharing
+// 关闭跨域保护
 app.use(cors());
 
-// Routes
+// 路由一定要得是最后的 middleware（因为 middleware 最后一步一般是：书写并发送response）
 app.use('/api/v1/tours', tourRouter);
 app.use('/api/v1/users', userRouter);
 app.use('/api/v1/typeNav', typeNavRouter);
